@@ -7,7 +7,8 @@ const propiedades_alquiler = [
         habitaciones: 2,
         costo: 2000,
         smoke: false,
-        pets: true
+        pets: true,
+        banos: 1
     },
     {
         nombre: 'Apartamento luminoso con vista al mar',
@@ -17,7 +18,8 @@ const propiedades_alquiler = [
         habitaciones: 3,
         costo: 2500,
         smoke: true,
-        pets: true
+        pets: true,
+        banos: 2
     },
     {
         nombre: 'Condominio moderno en zona residencial',
@@ -27,7 +29,8 @@ const propiedades_alquiler = [
         habitaciones: 2,
         costo: 2200,
         smoke: false,
-        pets: false
+        pets: false,
+        banos: 2
     },
     {
         nombre: 'Loft urbano con diseño industrial',
@@ -37,7 +40,8 @@ const propiedades_alquiler = [
         habitaciones: 1,
         costo: 1800,
         smoke: true,
-        pets: true
+        pets: true,
+        banos: 1
     },
     {
         nombre: 'Apartamento espacioso con jardín',
@@ -47,7 +51,8 @@ const propiedades_alquiler = [
         habitaciones: 3,
         costo: 2400,
         smoke: false,
-        pets: true
+        pets: true,
+        banos: 2
     },
     {
         nombre: 'Estudio moderno en zona céntrica',
@@ -57,6 +62,48 @@ const propiedades_alquiler = [
         habitaciones: 1,
         costo: 1500,
         smoke: true,
-        pets: false
+        pets: false,
+        banos: 1
     }
 ];
+
+
+const rentCards = document.getElementById('rentCards');
+
+let html = '';
+
+for (let propiedad of propiedades_alquiler) {
+    html += `
+                <div class="col-md-4 mb-4">
+                    <div class="card">
+                        <img src="${propiedad.src}" class="card-img-top" alt="departamento" />
+                        <div class="card-body">
+                            <h5 class="card-title">
+                                ${propiedad.nombre}
+                            </h5>
+                            <p class="card-text">
+                                ${propiedad.descripcion}
+                            </p>
+                            <p>
+                                <i class="fas fa-map-marker-alt"></i> ${propiedad.ubicacion}
+                            </p>
+                            <p>
+                                <i class="fas fa-bed"></i> ${propiedad.habitaciones} Habitaciones |
+                                <i class="fas fa-bath"></i> ${propiedad.banos} Baños
+                            </p>
+                            <p>
+                                <i class="fas fa-dollar-sign"></i>${propiedad.costo}</p>
+                            ${propiedad.smoke ?
+                                `<p class="text-success"><i class="fas fa-smoking"></i> Permitido fumar</p>` :
+                                `<p class="text-danger"><i class="fas fa-smoking-ban"></i> No se permite fumar</p>`
+                            }
+                            ${propiedad.pets ?
+                                `<p class="text-success"><i class="fas fa-paw"></i> Se permiten mascotas</p>` :
+                                `<p class="text-danger"><i class="fa-solid fa-ban"></i> No se permiten mascotas</p>`
+                            }
+                        </div>
+                    </div>
+                </div>
+            `
+}
+rentCards.innerHTML = html;

@@ -7,7 +7,8 @@ const propiedades_venta = [
         habitaciones: 4,
         costo: 5000,
         smoke: false,
-        pets: false
+        pets: false,
+        banos: 3
     },
     {
         nombre: 'Apartamento acogedor en la montaña',
@@ -17,7 +18,8 @@ const propiedades_venta = [
         habitaciones: 2,
         costo: 1200,
         smoke: true,
-        pets: true
+        pets: true,
+        banos: 2
     },
     {
         nombre: 'Penthouse de lujo con terraza panorámica',
@@ -27,7 +29,8 @@ const propiedades_venta = [
         habitaciones: 3,
         costo: 4500,
         smoke: false,
-        pets: true
+        pets: true,
+        banos: 3
     },
     {
         nombre: 'Casa familiar con amplio jardín',
@@ -37,7 +40,8 @@ const propiedades_venta = [
         habitaciones: 4,
         costo: 3500,
         smoke: false,
-        pets: true
+        pets: true,
+        banos: 2
     },
     {
         nombre: 'Villa moderna con vistas al lago',
@@ -47,7 +51,8 @@ const propiedades_venta = [
         habitaciones: 5,
         costo: 6500,
         smoke: false,
-        pets: true
+        pets: true,
+        banos: 3
     },
     {
         nombre: 'Cabaña rústica en el bosque',
@@ -57,6 +62,47 @@ const propiedades_venta = [
         habitaciones: 3,
         costo: 3000,
         smoke: true,
-        pets: true
+        pets: true,
+        banos: 1
     }
 ];
+
+const saleCards = document.getElementById('saleCards');
+
+let html = '';
+
+for (let propiedad of propiedades_venta) {
+    html += `
+                <div class="col-md-4 mb-4">
+                    <div class="card">
+                        <img src="${propiedad.src}" class="card-img-top" alt="departamento" />
+                        <div class="card-body">
+                            <h5 class="card-title">
+                                ${propiedad.nombre}
+                            </h5>
+                            <p class="card-text">
+                                ${propiedad.descripcion}
+                            </p>
+                            <p>
+                                <i class="fas fa-map-marker-alt"></i> ${propiedad.ubicacion}
+                            </p>
+                            <p>
+                                <i class="fas fa-bed"></i> ${propiedad.habitaciones} Habitaciones |
+                                <i class="fas fa-bath"></i> ${propiedad.banos} Baños
+                            </p>
+                            <p>
+                                <i class="fas fa-dollar-sign"></i>${propiedad.costo}</p>
+                            ${propiedad.smoke ?
+                                `<p class="text-success"><i class="fas fa-smoking"></i> Permitido fumar</p>` :
+                                `<p class="text-danger"><i class="fas fa-smoking-ban"></i> No se permite fumar</p>`
+                            }
+                            ${propiedad.pets ?
+                                `<p class="text-success"><i class="fas fa-paw"></i> Se permiten mascotas</p>` :
+                                `<p class="text-danger"><i class="fa-solid fa-ban"></i> No se permiten mascotas</p>`
+                            }
+                        </div>
+                    </div>
+                </div>
+            `
+}
+saleCards.innerHTML = html;
